@@ -5,6 +5,7 @@ import swal from "sweetalert";
 
 export default function Google() {
     const history = useHistory();
+
     const responseGoogle = (response) => {
         if (response !== null) {
             swal({
