@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from "react";
-import swal from "sweetalert";
+import React, { useState } from "react";
 import { FacebookProvider, Login } from "react-facebook";
 import { useHistory } from "react-router-dom";
+import { getFacebook } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
-function Facebook() {
+const Button = styled.button`
+    width: 100px;
+    background: white;
+    border: 2px solid black;
+`;
+
+export default function Facebook() {
+    const dispatch = useDispatch();
     const history = useHistory();
-    const [facebook, setFacebook] = useState({});
-
+    const [errors, setErrors] = useState({});
     const handleResponse = (data) => {
-        setFacebook(data);
+        dispatch(getFacebook(data, history));
     };
+
     const handleError = (error) => {
-        this.setState({ error });
+        console.log(errors);
+
+        setErrors({ error });
     };
-    useEffect(() => {
-        if (facebook.profile !== undefined) {
-            swal({
-                title: "Good job!",
-                text: `Selamat datang 
-                Nama: ${facebook.profile.name}
-                email: ${facebook.profile.email}`,
-
-                icon: "success",
-                button: "hokay!",
-            });
-            history.push("/home");
-
-            console.log(facebook.profile, "consolenih");
-        }
-    }, [facebook, history]);
 
     return (
         <FacebookProvider appId="2697154960539775">
@@ -38,21 +33,15 @@ function Facebook() {
                 onError={handleError}
             >
                 {({ loading, handleClick, error, data }) => (
-                    <button>
-                        {" "}
-                        <span onClick={handleClick}>
-                            Login via Facebook
-                            {loading && (
-                                <span style={{ color: "pink" }}>
-                                    Loading...
-                                </span>
-                            )}
-                        </span>
-                    </button>
+                    <Button onClick={handleClick}>
+                        {loading ? (
+                            <span>Loading...</span>
+                        ) : (
+                            "Login via Facebook"
+                        )}
+                    </Button>
                 )}
             </Login>
         </FacebookProvider>
     );
 }
-
-export default Facebook;
