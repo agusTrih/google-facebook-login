@@ -5,18 +5,26 @@ import swal from "sweetalert";
 
 export default function Google() {
     const history = useHistory();
-
+    const [google, setGoogle] = useHistory({
+        name: "",
+        email: "",
+    });
     const responseGoogle = (response) => {
         if (response !== null) {
-            swal({
-                title: "Good job!",
-                text: `Selamat datang 
-                Nama: ${response.profileObj.name}
-                email: ${response.profileObj.email}`,
-                icon: "success",
-                button: "hokay!",
+            // swal({
+            //     title: "Good job!",
+            //     text: `Selamat datang
+            //     Nama: ${response.profileObj.name}
+            //     email: ${response.profileObj.email}`,
+            //     icon: "success",
+            //     button: "hokay!",
+            // });
+            setGoogle({
+                ...google,
+                name: response.profileObj.name,
+                email: response.profileObj.email,
             });
-
+            localStorage.setItem("user", google);
             history.push("/home");
         }
         console.log(response.profileObj.name, "ini log google");
