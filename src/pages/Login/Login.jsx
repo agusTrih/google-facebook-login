@@ -12,7 +12,7 @@ const Center = styled.div`
     justify-content: center;
 `;
 
-const SpaceAround = styled(Center)`
+const Wrapper = styled(Center)`
     justify-content: space-around;
     width: 500px;
 `;
@@ -24,10 +24,10 @@ export default function Login() {
                 <Center>
                     <h1>Login</h1>
                 </Center>
-                <SpaceAround>
+                <Wrapper>
                     <Google />
                     <Facebook />
-                </SpaceAround>
+                </Wrapper>
             </div>
         </Main>
     );
