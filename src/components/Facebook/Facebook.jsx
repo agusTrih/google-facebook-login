@@ -8,7 +8,15 @@ import styled from "styled-components";
 const Button = styled.button`
     width: 100px;
     background: white;
-    border: 2px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: rgba(59, 89, 152, 0.8);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    &:hover {
+        background-color: rgba(59, 89, 152, 1);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
 `;
 
 export default function Facebook() {
@@ -34,11 +42,7 @@ export default function Facebook() {
             >
                 {({ loading, handleClick, error, data }) => (
                     <Button onClick={handleClick}>
-                        {loading ? (
-                            <span>Loading...</span>
-                        ) : (
-                            "Login via Facebook"
-                        )}
+                        {loading ? <span>Loading...</span> : "Login Facebook"}
                     </Button>
                 )}
             </Login>
