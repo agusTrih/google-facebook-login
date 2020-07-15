@@ -42,7 +42,7 @@ export default function Home() {
             <div>
                 <section>
                     <Center>
-                        <h1>Ini adalah Profile</h1>
+                        <h1>mencoba oAuth</h1>
                     </Center>
                 </section>
                 {dataUser.profile !== undefined && (
